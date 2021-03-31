@@ -1,0 +1,112 @@
+<HTML>
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<title>Handwritten Number Reader</title>
+
+	<style>
+		.img {
+			height: 250px;
+		}
+
+		figure {
+			display: inline-block;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="jumbotron mt-3" style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
+
+			<h1>Sketch2Pokemon using Pix2Pix</h1>
+			<A>This application generate colored images using GAN</A>
+			<A>Git Hub repository : </A> <A href="https://github.com/ceuity/laboratory/tree/main/pokemon_pix2pix">
+				pokemon_pix2pix</A>
+			<br>
+
+			<hr class="solid" style="border: 1px solid black; width: 100%;">
+
+			<h2>Example</h2>
+			<div id="sampleBox">
+				<figure>
+					<img class="img" src="./images/sample_image.png" alt="sample_image">
+					<figcaption>Sample generated colored image</figcaption>
+				</figure>
+			</div>
+			<br>
+			
+			
+			<div id='inputImage' style="display: flex; flex-flow: column; align-items: center;">
+				<h2>Upload </h2>
+				<label for="source" style="text-align: center;">Source sketch image : </label>
+				<input type='file' id='source' style="margin-bottom: 10px; align-items: center;">
+				<button id="submit" type='submit' class="btn btn-primary btn-lg" style="width: 320px;"> Run
+				</button>
+			</div>
+
+			<div style="display: flex; width: 100%; justify-content: space-between; margin-top: 30px">
+				<div style="width: 50%; display: flex; flex-flow: column; align-items: center;">
+					<h4 style="text-align: center;">Before Image</h4>
+					<img id='before-image' src='' alt='before' hidden/>
+				</div>
+				<div style="width: 50%; display: flex; flex-flow: column; align-items: center;">
+					<h4 style="text-align: center;">Result Image</h4>
+					<div id='resultBox' style="margin-left: auto; margin-right: auto; ">
+						<p id='errorbox' style="color: red;" hidden></p>
+						<img id='result-image' src='' alt='result' hidden/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	document.querySelector('#source').addEventListener('input', (event) => {
+		const source = event.target.files[0];
+		document.querySelector('#before-image').src = URL.createObjectURL(source);
+		document.querySelector('#before-image').removeAttribute('hidden');
+	});
+
+	document.getElementById("submit").onclick = async () => {
+		var formData = new FormData();
+		var source = document.getElementById('source').files[0];
+
+		formData.append('source', source);
+
+		try {
+			const response = await fetch(
+				'/images',
+				{
+					method: 'POST',
+					body: formData
+				}
+			)
+
+			if (!response.ok) {
+				throw Error('Loading Image Error');
+			}
+
+			const blob = await response.blob();
+			const url = await URL.createObjectURL(blob);
+			document.getElementById('result-image').src = url;
+			document.getElementById('result-image').removeAttribute('hidden');
+			document.querySelector('#errorbox').setAttribute('hidden', true);
+		} catch (error) {
+			console.error(error);
+			document.querySelector('#errorbox').textContent = error.message;
+			document.querySelector('#errorbox').removeAttribute('hidden');
+			document.getElementById('result-image').setAttribute('hidden', true);
+		}
+	}
+</script>
+
+</HTML>
