@@ -2,6 +2,13 @@
 
 [텐서플로 공식 튜토리얼](https://www.tensorflow.org/tutorials/generative/pix2pix)을 보고 [Sketch2Pokemon Dataset](https://www.kaggle.com/norod78/sketch2pokemon)에 적용시켜보는 프로젝트
 
+### 진행 상황
+
+- 2021-03-28 : 프로젝트 시작
+- 2021-03-28 ~ 2021-03-29 : 첫 번째 모델 학습 및 결과 확인
+- 2021-03-29 ~ 2021-03-30 : 두 번째 모델 학습 및 결과 확인
+- 2021-03-30 ~ : 모델 서비스화 진행 중
+
 기존에 AIFFEL 노드에서 학습했던 방법으로 잘 학습이 되지 않아서 공식 튜토리얼을 보고 다시 따라하였다.
 
 ![result](./images/result.gif)
