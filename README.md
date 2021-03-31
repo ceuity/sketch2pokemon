@@ -44,3 +44,5 @@
 ![result_ver2](./images/result_ver2.gif)
 
 기존에 있는 이미지는 원본이랑 비슷한 정도로 생성하는 것으로 보아 train set에 overfitting 된 것 같다. 추가로 다른 데이터셋을 더 활용하거나, 모델의 구조를 바꾸어서 다시 학습시켜봐야겠다.
+
+웹페이지 제작에 도움을 준 사람 : [sunhpark](https://github.com/sunhpark42)
