@@ -7,7 +7,7 @@ RUN pip install keras numpy pillow flask
 
 COPY . .
 
-RUN wget model http://e-ver.wo.tc:8080/pix2pix_model.h5
+RUN wget -P model http://e-ver.wo.tc:8080/pix2pix_model.h5
 
 EXPOSE 80
 ENTRYPOINT ["python"]
