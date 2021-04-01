@@ -2,6 +2,8 @@
 
 [텐서플로 공식 튜토리얼](https://www.tensorflow.org/tutorials/generative/pix2pix)을 보고 [Sketch2Pokemon Dataset](https://www.kaggle.com/norod78/sketch2pokemon)에 적용시켜보는 프로젝트
 
+[![Run on Ainize](https://ainize.ai/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=https://github.com/ceuity/sketch2pokemon)
+
 ### 진행 상황
 
 - 2021-03-28 : 프로젝트 시작
