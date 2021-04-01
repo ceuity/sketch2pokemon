@@ -49,8 +49,8 @@ def get_result():
 			source = request.files['source'].read()
 			adjusted_image = preprocess(source, width, height)
 			image = denormalize(adjusted_image)
-			# result = generate_image(model, adjusted_image)
-			image = Image.fromarray(image)
+			result = generate_image(model, adjusted_image)
+			image = Image.fromarray(result)
 			image_path = './images/'
 			filename = 'result_image.png'
 			image.save(image_path + filename)
