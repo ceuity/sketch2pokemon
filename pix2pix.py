@@ -2,7 +2,7 @@ import tensorflow as tf
 from image_preprocessor import denormalize
 
 def load_pix2pix_model():
-	generator = tf.keras.models.load_model('/app/model/pix2pix_model.h5')
+	generator = tf.keras.models.load_model('./model/pix2pix_model.h5')
 
 	return generator
 
