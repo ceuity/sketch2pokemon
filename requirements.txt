@@ -2,4 +2,3 @@ flask
 gunicorn
 pillow
 numpy
-tensorflow-cpu
