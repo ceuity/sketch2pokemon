@@ -82,8 +82,11 @@ Anime Sketch Colorization Pair Dataset을 이용하여 추가로 학습을 진�
 
 ### 2021-04-15
 성능을 더 개선할 수 있는 방법을 고민해보다가 loss function에 대해 generator의 loss를 왜 discriminator 결과와 비교하는 것일까? 라는 의문이 들어서 generator의 loss를 생성된 이미지와 실제 이미지 사이의 Binary Cross Entropy로 바꿔주었더니 오히려 이미지가 더 잘 생성되는 것으로 보였다. 결과는 다음과 같다.
+
 ![result_test](./images/result_test.gif)
+
 ![compared_image](./images/compared_image.png)
-APatchGAN을 이용한 Discriminator의 결과에서 실제 이미지를 1, Generator에 의해 생성된 이미지를 0으로 두고 비교하는 것이 과연 맞는 것일까? Discriminator 100%의 정확도로 실제 이미지를 구분할 수 있는 능력이 있다면 그럴 수 있겠지만 아직 학습되지 않은 Discriminator의 결과를 1과 0을 기준으로 비교하는 것은 잘못된 것이 아닐까 하는 생각이 든다.
+
+PatchGAN을 이용한 Discriminator의 결과에서 실제 이미지를 1, Generator에 의해 생성된 이미지를 0으로 두고 비교하는 것이 과연 맞는 것일까? Discriminator 100%의 정확도로 실제 이미지를 구분할 수 있는 능력이 있다면 그럴 수 있겠지만 아직 학습되지 않은 Discriminator의 결과를 1과 0을 기준으로 비교하는 것은 잘못된 것이 아닐까 하는 생각이 든다.
 
 웹페이지 제작에 도움을 준 사람 : [sunhpark](https://github.com/sunhpark42)
