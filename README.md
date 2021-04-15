@@ -12,6 +12,7 @@
 - 2021-03-30 ~ 2021-04-01 : 모델 서비스화 진행 중
 - 2021-04-02 : Ainize로 서비스 배포
 - 2021-04-13 : Anime Sketch Colorization Pair Dataset 이용하여 추가 학습
+- 2021-04-14 : 추가 학습 시켜보았으나 이전 모델과 다르지 않아 새로운 방법 탐색
 
 기존에 AIFFEL 노드에서 학습했던 방법으로 잘 학습이 되지 않아서 공식 튜토리얼을 보고 다시 따라하였다.
 
@@ -62,7 +63,7 @@
 ## 수정해야 할 것
 - ~~input 이미지 크기 조절~~ (2021-04-02 수정)
 - output 이미지 원본 사이즈로 반환 
-- 방문자 or 
+- 방문자 or Infernce counter
 
 ## 느낀점
 
@@ -78,5 +79,11 @@ Anime Sketch Colorization Pair Dataset을 이용하여 추가로 학습을 진�
 추가로 100 epoch을 학습시켜 보았으나, 이전의 포켓몬 데이터보다 인물과 같이 특정 형태를 가지는 데이터라 그런지 피부와 같은 부분은 정상적으로 칠해졌다. 그러나 여전히 부족한 성능이라고 느꼈다.
 
 모델을 개선할 수 있는 방법을 찾아보던 도중, Pix2Pix 모델의 한계가 있어서 이 부분을 개선한 [Auto-Painter에 관한 논문](https://arxiv.org/abs/1705.01908)을 찾았다. 해당 논문에서는 내가 생각한 정도의 성능을 얻을 수 있을 것 같아서 해당 모델을 다시 구현해봐야겠다.
+
+### 2021-04-15
+성능을 더 개선할 수 있는 방법을 고민해보다가 loss function에 대해 generator의 loss를 왜 discriminator 결과와 비교하는 것일까? 라는 의문이 들어서 generator의 loss를 생성된 이미지와 실제 이미지 사이의 Binary Cross Entropy로 바꿔주었더니 오히려 이미지가 더 잘 생성되는 것으로 보였다. 결과는 다음과 같다.
+![result_test](./images/result_test.gif)
+![compared_image](./images/compared_image.png)
+APatchGAN을 이용한 Discriminator의 결과에서 실제 이미지를 1, Generator에 의해 생성된 이미지를 0으로 두고 비교하는 것이 과연 맞는 것일까? Discriminator 100%의 정확도로 실제 이미지를 구분할 수 있는 능력이 있다면 그럴 수 있겠지만 아직 학습되지 않은 Discriminator의 결과를 1과 0을 기준으로 비교하는 것은 잘못된 것이 아닐까 하는 생각이 든다.
 
 웹페이지 제작에 도움을 준 사람 : [sunhpark](https://github.com/sunhpark42)
