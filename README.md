@@ -1,6 +1,4 @@
-# Pix2Pix 구현해보기
-
-[텐서플로 공식 튜토리얼](https://www.tensorflow.org/tutorials/generative/pix2pix)을 보고 [Sketch2Pokemon Dataset](https://www.kaggle.com/norod78/sketch2pokemon)에 적용시켜보는 프로젝트
+# Pix2Pix를 이용한 포켓몬 자동 채색 서비스
 
 [![Run on Ainize](https://ainize.ai/images/run_on_ainize_button.svg)](https://main-sketch2pokemon-ceuity.endpoint.ainize.ai/)
 
@@ -15,15 +13,19 @@
 - 2021-04-14 : 추가 학습 시켜보았으나 이전 모델과 다르지 않아 새로운 방법 탐색
 - 2021-04-15 : 프로젝트 종료
 
-기존에 AIFFEL 노드에서 학습했던 방법으로 잘 학습이 되지 않아서 공식 튜토리얼을 보고 다시 따라하였다.
+기존에 AIFFEL 노드에서 학습했던 방법으로 잘 학습이 되지 않아서 tensorflow 공식 튜토리얼을 보고 다시 따라하였다.
+
+## Dataset
+
+- Sketch2Pokemon Dataset [(https://www.kaggle.com/norod78/sketch2pokemon)](https://www.kaggle.com/norod78/sketch2pokemon)
 
 ![result](./images/result.gif)
 
 기존과의 차이점이라고 한다면 이미지를 Normalize 해주는 시점이 조금 다르다는 것이다. 아마 이 부분에서 문제가 생겨서 위와 같은 이미지가 학습된 것으로 보인다.
 
-이미지 데이터를 다룰 때에는 항상 Normalize, Denormalize에 신경써야 하는 것 같다. 어떤 Activation Function을 사용하느냐에 따라 Normalize 범위를 [-1, 1]로 할지, [0, 1]로 할지가 결정되기 떄문이다. 이번에 사용된 모델에서는 tanh를 Activation Function으로 사용했기 때문에 [-1, 1]의 범위에서 Normalize 해주었다.
+이미지 데이터를 다룰 때에는 항상 Normalize, Denormalize에 신경써야 하는 것 같다. 어떤 Activation Function을 사용하느냐에 따라 Normalize 범위를 [-1, 1]로 할지, [0, 1]로 할지가 결정되기 때문이다. 이번에 사용된 모델에서는 tanh를 Activation Function으로 사용했기 때문에 [-1, 1]의 범위에서 Normalize 해주었다.
 
-우선 시작부터 1000 epoch 정도를 돌려보고 시작하기로 했다.
+우선 1000 epoch 정도를 학습시켜보았다.
 
 - 400 epoch 정도 부터 큰 변화가 없는걸로 보아 local minima에 빠졌거나 학습이 종료된 것 같다.
 - 750 epoch 의 checkpoint를 불러와서 기울기를 1/10으로 줄여서 50 epoch 정도 더 학습을 시켜보았으나 큰 변화는 없는 것 같다.
