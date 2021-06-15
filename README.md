@@ -54,7 +54,7 @@
 
 [사용한 모델 링크](https://drive.google.com/file/d/1v1t2AXEb94rvw32Zj24_9dmQj2_58vB2/view?usp=sharing)
 
-## 문제점들
+## 어려웠던 점
 
 - 프론트엔드/백엔드 지식이 전혀 없어서 HTML부터 공부해서 페이지를 제작함
 - Inference 결과 tensor object로 반환되어 해당 object를 바로 웹에서 rendering 가능한 방법을 찾다가 결국 이미지로 저장하여 rendering 하는 방식으로 진행
@@ -65,8 +65,6 @@
 
 ## 수정해야 할 것
 - ~~input 이미지 크기 조절~~ (2021-04-02 수정)
-- output 이미지 원본 사이즈로 반환 
-- 방문자 or Infernce counter
 
 ## 느낀점
 
